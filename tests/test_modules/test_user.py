@@ -13,6 +13,7 @@ from datetime import datetime
 from time import sleep
 import models
 from models.user import User
+from unittest.mock import patch
 
 
 class TestUser_instantiation(unittest.TestCase):

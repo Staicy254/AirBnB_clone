@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
-from models import storage
+#from models import storage
 
 
 class BaseModel:

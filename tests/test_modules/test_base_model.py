@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """Defines unittests for models/base_model.py."""
 
-import os
+#import os
 import unittest
+import models
 from datetime import datetime
 from time import sleep
 from models.base_model import BaseModel

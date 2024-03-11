@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-     """Defines unittests for Amenity class
+"""Defines unittests for Amenity class
 
      The unittests classes are imported 
      from the test/test_models/test_amenity.py

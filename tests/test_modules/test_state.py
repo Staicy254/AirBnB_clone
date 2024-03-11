@@ -12,6 +12,7 @@ from datetime import datetime
 import models
 from time import sleep
 from models.state import State
+from unittest.mock import patch
 
 
 class TestState_instantiation(unittest.TestCase):

@@ -92,16 +92,16 @@ class TestCity_instantiation(unittest.TestCase):
       dt_iso = dt.isoformat()
       cy = City(id="345", created_at=dt_iso, updated_at=dt_iso)
       self.assertEqual(cy.id, "345")
-    self.assertEqual(cy.created_at, dt)
-            self.assertEqual(cy.updated_at, dt)
+      self.assertEqual(cy.created_at, dt) 
 
-        def test_instantiation_with_None_kwargs(self):
+
+  def test_instantiation_with_None_kwargs(self):
             """ passing None for keyword arguments raises TypeError."""
             with self.assertRaises(TypeError):
                 City(id=None, created_at=None, updated_at=None)
 
 
-    class TestCity_save(unittest.TestCase):
+class TestCity_save(unittest.TestCase):
         """Unittests - tests save method of City class."""
 
         @classmethod
@@ -166,7 +166,7 @@ class TestCity_instantiation(unittest.TestCase):
                 self.assertIn(cyid, f.read())
 
 
-    class TestCity_to_dict(unittest.TestCase):
+class TestCity_to_dict(unittest.TestCase):
         """tests to_dict method of City class."""
 
         def test_to_dict_type(self):
@@ -194,9 +194,9 @@ class TestCity_instantiation(unittest.TestCase):
             cy = City()
             cy_dict = cy.to_dict()
             self.assertEqual(str, type(cy_dict["id"]))
-            self.assertEqual(str, type(cy_dict["
+            self.assertEqual(str, type(cy_dict[" "]))
             self.assertEqual(str, type(cy_dict["created_at"]))
-                  self.assertEqual(str, type(cy_dict["updated_at"]))
+            self.assertEqual(str, type(cy_dict["updated_at"]))
 
         
         def test_to_dict_output(self):
@@ -213,17 +213,17 @@ class TestCity_instantiation(unittest.TestCase):
                 }
                 self.assertDictEqual(cy.to_dict(), tdict)
 
-              def test_contrast_to_dict_dunder_dict(self):
+        def test_contrast_to_dict_dunder_dict(self):
                 """checks if to_dict class is different from the private __dict__ attribute."""
                 cy = City()
                 self.assertNotEqual(cy.to_dict(), cy.__dict__)
 
-              def test_to_dict_with_arg(self):
+        def test_to_dict_with_arg(self):
                 """checks if to_dict class raises TypeError when passed an argument."""
                 cy = City()
                 with self.assertRaises(TypeError):
                     cy.to_dict(None)
 
 
-              if __name__ == "__main__":
-              unittest.main()
+if __name__ == "__main__":
+    unittest.main()

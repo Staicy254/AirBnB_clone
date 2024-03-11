@@ -8,7 +8,7 @@ classes:
 """
 import unittest
 import os
-import models
+#import models
 import json
 from datetime import datetime
 from time import sleep
@@ -62,11 +62,6 @@ class FileStorage:
               value["_class_"]))  # Assuming class names are valid for eval
     except FileNotFoundError:
       pass  # Do nothing if the file doesn't exist
-
-
-# Unittests for Place class (assuming Place is defined elsewhere)
-import unittest
-from models.place import Place  # Assuming place.py is in models
 
 
 class TestPlace_save(unittest.TestCase):

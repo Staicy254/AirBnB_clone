@@ -8,8 +8,12 @@ import os
 import unittest
 from datetime import datetime
 from time import sleep
-from models import storage
+#from models import storage
 from models.review import Review
+import models
+from unittest.mock import patch
+import random
+import string
 
 
 class TestReview_instantiation(unittest.TestCase):
