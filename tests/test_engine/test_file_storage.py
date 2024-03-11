@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Defines unittests for models/engine/file_storage.py.
 
-Unittest classes to check:
+Unittest classes:
     TestFileStorage_instantiation
     TestFileStorage_methods
 """
@@ -21,7 +21,7 @@ from models.review import Review
 
 
 class TestFileStorage_instantiation(unittest.TestCase):
-    """Unittests for testing instantiation of FileStorage class."""
+    """Unittests testing instantiation of FileStorage class."""
 
     def test_FileStorage_instantiation_no_args(self):
         self.assertEqual(type(FileStorage()), FileStorage)
@@ -41,7 +41,7 @@ class TestFileStorage_instantiation(unittest.TestCase):
 
 
 class TestFileStorage_methods(unittest.TestCase):
-    """Unittests for testing methods of  FileStorage class."""
+    """Unittests testing methods of FileStorage class."""
 
     @classmethod
     def setUp(self):
@@ -108,6 +108,28 @@ class TestFileStorage_methods(unittest.TestCase):
             models.storage.new(None)
 
     def test_save(self):
+        """Tests the 'save' function's ability to persist objects to storage.
+
+  - Creates instances of various models (BaseModel, User, State, etc.).
+  - Adds the objects to storage using 'models.storage.new()'.
+  - Calls 'models.storage.save()' to persist the objects in the chosen storage system.
+
+  This test verifies that the 'save' function  stores object data in the
+  appropriate storage mechanism (e.g., file system, database) as defined by the
+  currently configured storage backend (e.g., FileStorage).
+
+  **Note:** The specific storage details (e.g., file paths, database tables)
+  are not explicitly mentioned here to maintain generality across different
+  storage backends.
+  """
+        Python
+def test_save(self):
+  """Tests that 'save' function objects to storage.
+
+  - Creates instances of various models (BaseModel, User, State, etc.).
+  - Adds the objects to storage using 'models.storage.new()'.
+  - Calls 'models.storage.save()' to persist the objects to storage.
+  """
         bm = BaseModel()
         us = User()
         st = State()
@@ -135,52 +157,23 @@ class TestFileStorage_methods(unittest.TestCase):
             self.assertIn("Review." + rv.id, save_text)
 
     def test_save_with_arg(self):
+        """Tests that calling 'save' with argument raises a TypeError.
+
+ The 'save' function shouldn't accept any arguments. This test verifies
+ calling it with an argument (None in this case) raises a TypeError.
+ """
         with self.assertRaises(TypeError):
             models.storage.save(None)
 
     def test_reload(self):
-         """Tests that 'reload' function loads objects from storage.
+        test_reload(self):
+    """Tests that 'reload' function successfully loads objects from storage.
 
     - Creates instances of various models (BaseModel, User, State, Place, City, Amenity, Review).
     - Saves the objects to storage using 'models.storage.save()'.
     - Reloads objects from storage using 'models.storage.reload()'.
     - Verifies that each object's key (class_name.id) is present in the internal storage dictionary (FileStorage_objects).
     """
-        def test_reload(self):
-            """Tests that 'reload' function loads objects from storage
-       and preserves object identity across multiple saves and reloads.
-
-    - Creates and saves instances of various models (BaseModel, User, State, etc.).
-    - Reloads objects from storage using 'models.storage.reload()'.
-    - Verifies that each object's key (class_name.id) is present in the internal
-      storage dictionary (FileStorage_objects).
-    - Creates a new set of objects, saves them, and reloads again.
-    - Verifies that both sets of objects are present in storage after multiple reloads.
-    """
-        bm = BaseModel()
-        us = User()
-        st = State()
-        pl = Place()
-        cy = City()
-        am = Amenity()
-        rv = Review()
-        models.storage.new(bm)
-        models.storage.new(us)
-        models.storage.new(st)
-        models.storage.new(pl)
-        models.storage.new(cy)
-        models.storage.new(am)
-        models.storage.new(rv)
-        models.storage.save()
-        models.storage.reload()
-        objs = FileStorage.FileStorage_objects
-        self.assertIn("BaseModel." + bm.id, objs)
-        self.assertIn("User." + us.id, objs)
-        self.assertIn("State." + st.id, objs)
-        self.assertIn("Place." + pl.id, objs)
-        self.assertIn("City." + cy.id, objs)
-        self.assertIn("Amenity." + am.id, objs)
-        self.assertIn("Review." + rv.id, objs)
         bm = BaseModel()
         us = User()
         st = State()
@@ -207,14 +200,14 @@ class TestFileStorage_methods(unittest.TestCase):
         self.assertIn("Review." + rv.id, objs)
 
     def test_reload_with_arg(self):
-       """Tests calling the 'reload' function argument raises a TypeError.
+        """Tests that calling 'reload' with an argument raises a TypeError.
 
-   Asserts that the function expects no arguments and raises an appropriate exception
-   when called with a value (None in this case).
-   """ 
+  The 'reload' function shouldn't accept any arguments. This verifies
+  calling it with an argument (None in this case) raises a TypeError.
+  """
         with self.assertRaises(TypeError):
             models.storage.reload(None)
 
 
-if __name__== "__main__":
+if __name__ == "__main__":
     unittest.main()
